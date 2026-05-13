@@ -3,4 +3,5 @@ import { SupabaseProvider } from './supabase.provider'
 
 @Module({
     providers: [SupabaseProvider],
+    exports: [SupabaseProvider],
 })
