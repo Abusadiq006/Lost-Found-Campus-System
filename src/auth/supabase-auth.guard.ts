@@ -28,6 +28,12 @@ export class SupabaseAuthGuard implements CanActivate {
             if (!decoded?.sub) {
                 throw new UnauthorizedException('Invalid token')
             }
+
+             // attach user to request
+            (request as any).user = {
+                id: decoded.sub,
+                email: decoded.email,
+            };
         }
     }
 }
