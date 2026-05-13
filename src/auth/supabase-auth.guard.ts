@@ -15,5 +15,7 @@ export class SupabaseAuthGuard implements CanActivate {
         const request = context.switchToHttp().getRequest<Request>()
         
         const authHeader = request.headers.authorization;
+    
+          if (!authHeader) {}
     }
 }
