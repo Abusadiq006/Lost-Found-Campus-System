@@ -7,3 +7,4 @@ import {
 
 
 import { Request } from 'express';
+import * as jwt from 'jsonwebtoken';
