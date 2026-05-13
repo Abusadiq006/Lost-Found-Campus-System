@@ -23,7 +23,7 @@ export class SupabaseAuthGuard implements CanActivate {
         const token = authHeader.replace('Bearer ', '')
 
         try {
-            
+            const decoded = jwt.decode(token) as any
         }
     }
 }
