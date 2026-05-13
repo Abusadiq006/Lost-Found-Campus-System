@@ -18,6 +18,8 @@ export class SupabaseAuthGuard implements CanActivate {
     
           if (!authHeader) {
             throw new UnauthorizedException('No authorization header')
-          }
+        }
+
+        const token = authHeader.replace('Bearer ', '')
     }
 }
