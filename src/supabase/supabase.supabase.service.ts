@@ -13,5 +13,9 @@ export class SupabaseService implements OnModuleInit {
             .select('*')
 
         console.log(data)
+
+        if (error) {
+            console.log('Supabase connection error:', error.message)
+        }
     }
 }
