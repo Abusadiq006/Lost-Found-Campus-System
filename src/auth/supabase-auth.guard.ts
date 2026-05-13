@@ -21,5 +21,9 @@ export class SupabaseAuthGuard implements CanActivate {
         }
 
         const token = authHeader.replace('Bearer ', '')
+
+        try {
+            
+        }
     }
 }
