@@ -24,6 +24,8 @@ export class SupabaseAuthGuard implements CanActivate {
 
         try {
             const decoded = jwt.decode(token) as any
+
+            if (!decoded?.sub) {}
         }
     }
 }
