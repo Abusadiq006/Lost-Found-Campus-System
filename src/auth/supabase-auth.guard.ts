@@ -9,7 +9,7 @@ import {
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-@Injectable
+@Injectable()
 export class SupabaseAuthGuard implements CanActivate {
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest<Request>()
@@ -34,6 +34,10 @@ export class SupabaseAuthGuard implements CanActivate {
                 id: decoded.sub,
                 email: decoded.email,
             };
+
+            return true
+        } catch (err) {
+            throw new UnauthorizedException('Invalid token')
         }
     }
 }
