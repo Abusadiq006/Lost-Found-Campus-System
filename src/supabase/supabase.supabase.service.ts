@@ -6,4 +6,8 @@ export class SupabaseService implements OnModuleInit {
         @Inject('SUPABASE_CLIENT')
         private readonly supabase,
     ) {}
+
+    async onModuleInit() {
+        
+    }
 }
