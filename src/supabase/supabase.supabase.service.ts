@@ -11,5 +11,7 @@ export class SupabaseService implements OnModuleInit {
         const { data, error } = await this.supabase
             .from('test')
             .select('*')
+
+        console.log(data)
     }
 }
