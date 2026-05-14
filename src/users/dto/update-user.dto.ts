@@ -15,4 +15,9 @@ export class UpdateUserDto {
     @MaxLength(50)
     matric_number?: string
 
+    @IsOptional()
+    @IsString()
+    @MaxLength(20)
+    phone_number?: string
+
 }
