@@ -18,3 +18,9 @@ export class UsersController {
   constructor(
     private readonly usersService: UsersService,
   ) {}
+
+@Get('me')
+@UseGuards(SupabaseAuthGuard)
+async getMe(@CurrentUser() user: any) {
+    return this.usersService.getProfile(user.id);
+}
