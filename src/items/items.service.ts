@@ -41,3 +41,19 @@ export class ItemsService {
 
   async findAll() {
     const supabase = this.supabaseService.getClient();
+
+    const { data, error } = await supabase
+      .from('items')
+      .select(`
+        *,
+        users (
+          full_name,
+          profile_image
+        ),
+        campus_locations (
+          name
+        )
+      `)
+      .order('created_at', {
+        ascending: false,
+      });
