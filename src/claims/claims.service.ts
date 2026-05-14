@@ -44,3 +44,22 @@ export class ClaimsService {
         'You cannot claim your own item',
       );
     }
+
+      const { data, error } = await supabase
+      .from('claims')
+      .insert({
+        item_id: itemId,
+        claimant_id: claimantId,
+        message: dto.message,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      throw new ForbiddenException(
+        error.message,
+      );
+    }
+
+    return data;
+  }
