@@ -57,3 +57,13 @@ export class ItemsService {
       .order('created_at', {
         ascending: false,
       });
+
+        if (error) {
+      throw new ForbiddenException(error.message);
+    }
+
+    return data;
+  }
+
+  async findOne(id: string) {
+    const supabase = this.supabaseService.getClient();
