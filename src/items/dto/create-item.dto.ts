@@ -12,3 +12,9 @@ export enum ItemStatus {
   LOST = 'lost',
   FOUND = 'found',
 }
+
+export class CreateItemDto {
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(150)
+  title: string;
