@@ -82,3 +82,35 @@ export class ClaimsService {
       .order('created_at', {
         ascending: false,
       });
+
+       if (error) {
+      throw new ForbiddenException(
+        error.message,
+      );
+    }
+
+    return data;
+  }
+
+  async reviewClaim(
+    claimId: string,
+    reviewerId: string,
+    dto: ReviewClaimDto,
+  ) {
+    const supabase =
+      this.supabaseService.getClient();
+
+    const { data: claim } = await supabase
+      .from('claims')
+      .select(`
+        *,
+        items (*)
+      `)
+      .eq('id', claimId)
+      .single();
+
+    if (!claim) {
+      throw new NotFoundException(
+        'Claim not found',
+      );
+    }
