@@ -31,3 +31,16 @@ export class ClaimsService {
       .select('*')
       .eq('id', itemId)
       .single();
+
+
+    if (!item) {
+      throw new NotFoundException(
+        'Item not found',
+      );
+    }
+
+    if (item.user_id === claimantId) {
+      throw new ForbiddenException(
+        'You cannot claim your own item',
+      );
+    }
