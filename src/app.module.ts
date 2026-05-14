@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 
 import { SupabaseModule } from './supabase/supabase.module';
 import { UsersModule } from './users/users.module';
+import { ItemsModule } from './items/items.module';
 
 @Module({
   imports: [
@@ -16,6 +17,8 @@ import { UsersModule } from './users/users.module';
     SupabaseModule,
 
     UsersModule,
+
+    ItemsModule,
   ],
 
   controllers: [AppController],
