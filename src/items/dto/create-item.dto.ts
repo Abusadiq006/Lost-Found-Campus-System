@@ -37,3 +37,7 @@ export class CreateItemDto {
 
     @IsEnum(ItemStatus)
     item_status: ItemStatus;
+
+    @IsDateString()
+    date_lost_or_found: string;
+}
