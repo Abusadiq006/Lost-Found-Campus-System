@@ -26,3 +26,7 @@ export class CreateItemDto {
     @IsString()
     @IsNotEmpty()
     category: string;
+
+    @IsOptional()
+    @IsString()
+    image_url?: string;
