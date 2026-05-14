@@ -149,3 +149,18 @@ export class ItemsService {
         'You do not own this item',
       );
     }
+
+    const { error } = await supabase
+      .from('items')
+      .delete()
+      .eq('id', itemId);
+
+    if (error) {
+      throw new ForbiddenException(error.message);
+    }
+
+    return {
+      message: 'Item deleted successfully',
+    };
+  }
+}
