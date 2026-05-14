@@ -19,3 +19,15 @@ export class ItemsService {
     userId: string,
     dto: CreateItemDto,
   ) {
+     const supabase = this.supabaseService.getClient();
+
+    const payload = {
+      ...dto,
+      user_id: userId,
+    };
+
+    const { data, error } = await supabase
+      .from('items')
+      .insert(payload)
+      .select()
+      .single();
