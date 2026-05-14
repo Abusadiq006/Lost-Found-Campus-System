@@ -51,3 +51,22 @@ export class UploadsService {
       .upload(filePath, file.buffer, {
         contentType: file.mimetype,
       });
+
+    if (error) {
+      throw new BadRequestException(
+        error.message,
+      );
+    }
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage
+      .from('items')
+      .getPublicUrl(filePath);
+
+    return {
+      message: 'Image uploaded successfully',
+      image_url: publicUrl,
+    };
+  }
+}
