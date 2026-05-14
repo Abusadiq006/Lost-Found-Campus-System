@@ -67,3 +67,19 @@ export class ItemsService {
 
   async findOne(id: string) {
     const supabase = this.supabaseService.getClient();
+    
+
+    const { data, error } = await supabase
+      .from('items')
+      .select(`
+        *,
+        users (
+          full_name,
+          profile_image
+        ),
+        campus_locations (
+          name
+        )
+      `)
+      .eq('id', id)
+      .single();
