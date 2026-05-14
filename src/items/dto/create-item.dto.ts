@@ -34,3 +34,6 @@ export class CreateItemDto {
     @IsOptional()
     @IsUUID()
     location_id?: string;
+
+    @IsEnum(ItemStatus)
+    item_status: ItemStatus;
