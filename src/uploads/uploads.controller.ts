@@ -24,3 +24,8 @@ export class UploadsController {
   async uploadItemImage(
     @UploadedFile() file: Express.Multer.File,
   ) {
+     return this.uploadsService.uploadItemImage(
+      file,
+    );
+  }
+}
