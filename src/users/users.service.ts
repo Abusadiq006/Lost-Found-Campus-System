@@ -33,3 +33,6 @@ export class UsersService {
         userId: string,
         dto: UpdateUserDto,
   ) {
+    const supabase = this.supabaseService.getClient()
+
+    
