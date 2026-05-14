@@ -150,7 +150,7 @@ export class ItemsService {
       );
     }
 
-    const { error } = await supabase
+        const { error } = await supabase
       .from('items')
       .delete()
       .eq('id', itemId);
