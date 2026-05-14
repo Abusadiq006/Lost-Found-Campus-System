@@ -14,4 +14,10 @@ export class UsersService {
   ) {}
 
     async getProfile(userId: string) {
-    const supabase = this.supabaseService.getClient();
+        const supabase = this.supabaseService.getClient();
+
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', userId)
+            .single();
