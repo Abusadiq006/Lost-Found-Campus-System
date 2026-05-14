@@ -45,3 +45,7 @@ export class UsersService {
     if (error || !data) {
         throw new NotFoundException('Failed to update user')
     }
+
+    return data
+  }
+}
