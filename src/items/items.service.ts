@@ -83,3 +83,47 @@ export class ItemsService {
       `)
       .eq('id', id)
       .single();
+
+        if (error || !data) {
+      throw new NotFoundException('Item not found');
+    }
+
+    return data;
+  }
+
+  async update(
+    itemId: string,
+    userId: string,
+    dto: UpdateItemDto,
+  ) {
+    const supabase = this.supabaseService.getClient();
+
+    const { data: existingItem } = await supabase
+      .from('items')
+      .select('*')
+      .eq('id', itemId)
+      .single();
+
+    if (!existingItem) {
+      throw new NotFoundException('Item not found');
+    }
+
+    if (existingItem.user_id !== userId) {
+      throw new ForbiddenException(
+        'You do not own this item',
+      );
+    }
+
+    const { data, error } = await supabase
+      .from('items')
+      .update(dto)
+      .eq('id', itemId)
+      .select()
+      .single();
+
+    if (error) {
+      throw new ForbiddenException(error.message);
+    }
+
+    return data;
+  }
