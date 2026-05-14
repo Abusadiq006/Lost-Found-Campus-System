@@ -29,3 +29,12 @@ async getMe(@CurrentUser() user: any) {
 @UseGuards(SupabaseAuthGuard)
 async updateMe(
     @CurrentUser() user: any,
+
+    @Body() dto: UpdateUserDto,
+  ) {
+    return this.usersService.updateProfile(
+      user.id,
+      dto,
+    );
+  }
+}
