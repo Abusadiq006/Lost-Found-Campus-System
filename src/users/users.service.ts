@@ -21,3 +21,7 @@ export class UsersService {
             .select('*')
             .eq('id', userId)
             .single();
+
+        if (error || !data) {
+            throw new NotFoundException('User not found');
+    }
