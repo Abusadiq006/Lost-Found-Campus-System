@@ -127,3 +127,25 @@ export class ItemsService {
 
     return data;
   }
+
+    async remove(
+    itemId: string,
+    userId: string,
+  ) {
+    const supabase = this.supabaseService.getClient();
+
+    const { data: existingItem } = await supabase
+      .from('items')
+      .select('*')
+      .eq('id', itemId)
+      .single();
+
+    if (!existingItem) {
+      throw new NotFoundException('Item not found');
+    }
+
+    if (existingItem.user_id !== userId) {
+      throw new ForbiddenException(
+        'You do not own this item',
+      );
+    }
