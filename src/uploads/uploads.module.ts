@@ -5,7 +5,10 @@ import { SupabaseModule } from '../supabase/supabase.module';
 import { UploadsController } from './uploads.controller';
 import { UploadsService } from './uploads.service';
 @Module({
+  imports: [SupabaseModule],
+
   controllers: [UploadsController],
-  providers: [UploadsService]
+
+  providers: [UploadsService],
 })
 export class UploadsModule {}
