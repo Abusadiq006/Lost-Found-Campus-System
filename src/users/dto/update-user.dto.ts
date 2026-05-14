@@ -20,4 +20,8 @@ export class UpdateUserDto {
     @MaxLength(20)
     phone_number?: string
 
+    @IsOptional()
+    @IsString()
+    profile_image?: string
+
 }
