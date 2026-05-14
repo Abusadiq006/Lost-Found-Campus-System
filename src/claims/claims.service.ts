@@ -63,3 +63,22 @@ export class ClaimsService {
 
     return data;
   }
+
+   async getMyClaims(userId: string) {
+    const supabase =
+      this.supabaseService.getClient();
+
+    const { data, error } = await supabase
+      .from('claims')
+      .select(`
+        *,
+        items (
+          title,
+          image_url,
+          item_status
+        )
+      `)
+      .eq('claimant_id', userId)
+      .order('created_at', {
+        ascending: false,
+      });
