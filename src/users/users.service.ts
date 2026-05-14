@@ -35,4 +35,9 @@ export class UsersService {
   ) {
     const supabase = this.supabaseService.getClient()
 
-    
+    const { data, error } = await supabase
+        .from('users')
+        .update(dto)
+        .eq('id', userId)
+        .select()
+        .single();
