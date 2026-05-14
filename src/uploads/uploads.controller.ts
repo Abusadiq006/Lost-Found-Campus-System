@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 
-@Controller('uploads')
-export class UploadsController {}
+import { FileInterceptor } from '@nestjs/platform-express';
+
+import { SupabaseAuthGuard } from '../auth/supabase-auth.guard';
+
+import { UploadsService } from './uploads.service';
