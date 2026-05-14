@@ -22,3 +22,7 @@ export class CreateItemDto {
     @IsString()
     @IsNotEmpty()
     description: string;
+
+    @IsString()
+    @IsNotEmpty()
+    category: string;
