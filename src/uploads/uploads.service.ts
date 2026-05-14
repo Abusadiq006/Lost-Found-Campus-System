@@ -21,3 +21,33 @@ export class UploadsService {
         'No file uploaded',
       );
     }
+
+     const allowedMimeTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+    ];
+
+    if (
+      !allowedMimeTypes.includes(file.mimetype)
+    ) {
+      throw new BadRequestException(
+        'Invalid file type',
+      );
+    }
+
+    const supabase =
+      this.supabaseService.getClient();
+
+    const fileExtension =
+      file.originalname.split('.').pop();
+
+    const fileName = `${randomUUID()}.${fileExtension}`;
+
+    const filePath = `items/${fileName}`;
+
+    const { error } = await supabase.storage
+      .from('items')
+      .upload(filePath, file.buffer, {
+        contentType: file.mimetype,
+      });
