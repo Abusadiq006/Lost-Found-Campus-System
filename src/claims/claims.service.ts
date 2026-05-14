@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
-
-@Injectable()
-export class ClaimsService {}
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
