@@ -3,3 +3,4 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
+import { SupabaseService } from '../supabase/supabase.service';
