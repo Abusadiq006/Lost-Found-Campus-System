@@ -11,3 +11,16 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { SupabaseAuthGuard } from '../auth/supabase-auth.guard';
 
 import { UploadsService } from './uploads.service';
+
+@Controller('uploads')
+export class UploadsController {
+  constructor(
+    private readonly uploadsService: UploadsService,
+  ) {}
+
+  @Post('item-image')
+  @UseGuards(SupabaseAuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadItemImage(
+    @UploadedFile() file: Express.Multer.File,
+  ) {
