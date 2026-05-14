@@ -7,3 +7,8 @@ import {
   IsUUID,
   MaxLength,
 } from 'class-validator';
+
+export enum ItemStatus {
+  LOST = 'lost',
+  FOUND = 'found',
+}
