@@ -30,3 +30,7 @@ export class CreateItemDto {
     @IsOptional()
     @IsString()
     image_url?: string;
+
+    @IsOptional()
+    @IsUUID()
+    location_id?: string;
