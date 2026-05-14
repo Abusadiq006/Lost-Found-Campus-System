@@ -31,3 +31,13 @@ export class ItemsService {
       .insert(payload)
       .select()
       .single();
+
+      if (error) {
+      throw new ForbiddenException(error.message);
+    }
+
+    return data;
+  }
+
+  async findAll() {
+    const supabase = this.supabaseService.getClient();
