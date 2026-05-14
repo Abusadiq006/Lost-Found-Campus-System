@@ -2,3 +2,9 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+
+export class CreateClaimDto {
+  @IsOptional()
+  @IsString()
+  message?: string;
+}
