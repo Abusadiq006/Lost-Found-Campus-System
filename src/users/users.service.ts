@@ -12,3 +12,6 @@ export class UsersService {
   constructor(
     private readonly supabaseService: SupabaseService,
   ) {}
+
+    async getProfile(userId: string) {
+    const supabase = this.supabaseService.getClient();
