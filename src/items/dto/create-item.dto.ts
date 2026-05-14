@@ -14,7 +14,11 @@ export enum ItemStatus {
 }
 
 export class CreateItemDto {
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(150)
-  title: string;
+    @IsString()
+    @IsNotEmpty()
+    @MaxLength(150)
+    title: string;
+
+    @IsString()
+    @IsNotEmpty()
+    description: string;
