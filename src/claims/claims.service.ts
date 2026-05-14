@@ -114,3 +114,28 @@ export class ClaimsService {
         'Claim not found',
       );
     }
+
+     const item = claim.items;
+
+    if (item.user_id !== reviewerId) {
+      throw new ForbiddenException(
+        'Only item owner can review claims',
+      );
+    }
+
+    const { data, error } = await supabase
+      .from('claims')
+      .update({
+        claim_status: dto.decision,
+        reviewed_by: reviewerId,
+        reviewed_at: new Date(),
+      })
+      .eq('id', claimId)
+      .select()
+      .single();
+
+    if (error) {
+      throw new ForbiddenException(
+        error.message,
+      );
+    }
