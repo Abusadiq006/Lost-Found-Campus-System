@@ -139,3 +139,29 @@ export class ClaimsService {
         error.message,
       );
     }
+
+    // If approved -> resolve item
+    if (
+      dto.decision === ClaimDecision.APPROVED
+    ) {
+      await supabase
+        .from('items')
+        .update({
+          is_resolved: true,
+          item_status: 'claimed',
+        })
+        .eq('id', item.id);
+
+      // Reject all other claims
+      await supabase
+        .from('claims')
+        .update({
+          claim_status: 'rejected',
+        })
+        .eq('item_id', item.id)
+        .neq('id', claimId);
+    }
+
+    return data;
+  }
+}
