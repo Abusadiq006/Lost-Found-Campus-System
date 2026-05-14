@@ -41,3 +41,7 @@ export class UsersService {
         .eq('id', userId)
         .select()
         .single();
+
+    if (error || !data) {
+        throw new NotFoundException('Failed to update user')
+    }
