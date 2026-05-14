@@ -4,6 +4,7 @@ import { SupabaseModule } from '../supabase/supabase.module';
 
 import { UploadsController } from './uploads.controller';
 import { UploadsService } from './uploads.service';
+
 @Module({
   imports: [SupabaseModule],
 

@@ -19,7 +19,6 @@ export class UploadsController {
   ) {}
 
   @Post('item-image')
-  @UseGuards(SupabaseAuthGuard)
   @UseInterceptors(FileInterceptor('file'))
   async uploadItemImage(
     @UploadedFile() file: Express.Multer.File,

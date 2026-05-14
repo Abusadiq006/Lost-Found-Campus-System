@@ -8,6 +8,7 @@ import { SupabaseModule } from './supabase/supabase.module';
 import { UsersModule } from './users/users.module';
 import { ItemsModule } from './items/items.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { ClaimsModule } from './claims/claims.module';
 
 @Module({
   imports: [
@@ -22,6 +23,8 @@ import { UploadsModule } from './uploads/uploads.module';
     ItemsModule,
 
     UploadsModule,
+
+    ClaimsModule,
   ],
 
   controllers: [AppController],
