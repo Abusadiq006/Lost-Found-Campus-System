@@ -1,4 +1,7 @@
-import { Controller } from '@nestjs/common';
-
-@Controller('users')
-export class UsersController {}
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
