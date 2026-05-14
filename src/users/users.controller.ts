@@ -24,3 +24,8 @@ export class UsersController {
 async getMe(@CurrentUser() user: any) {
     return this.usersService.getProfile(user.id);
 }
+
+@Patch('me')
+@UseGuards(SupabaseAuthGuard)
+async updateMe(
+    @CurrentUser() user: any,
