@@ -25,3 +25,11 @@ export class UsersService {
         if (error || !data) {
             throw new NotFoundException('User not found');
     }
+
+    return data;
+  }
+
+    async updateProfile(
+        userId: string,
+        dto: UpdateUserDto,
+  ) {
