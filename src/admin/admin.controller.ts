@@ -18,3 +18,8 @@ import { AdminService } from './admin.service';
   SupabaseAuthGuard,
   RolesGuard,
 )
+
+export class AdminController {
+  constructor(
+    private readonly adminService: AdminService,
+  ) {}
