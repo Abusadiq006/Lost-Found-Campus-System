@@ -76,3 +76,23 @@ import { SupabaseService } from '../supabase/supabase.service';
       user: data,
     };
   }
+
+  async deleteItem(itemId: string) {
+    const supabase =
+      this.supabaseService.getClient();
+
+    const { error } = await supabase
+      .from('items')
+      .delete()
+      .eq('id', itemId);
+
+    if (error) {
+      throw new NotFoundException(
+        'Item not found',
+      );
+    }
+
+    return {
+      message: 'Item deleted successfully',
+    };
+  }
