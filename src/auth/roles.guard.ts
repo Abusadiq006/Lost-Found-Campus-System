@@ -35,3 +35,30 @@ export class RolesGuard implements CanActivate {
       .select('role,is_suspended')
       .eq('id', user.id)
       .single();
+
+       if (!data) {
+      throw new ForbiddenException(
+        'User not found',
+      );
+    }
+
+    if (data.is_suspended) {
+      throw new ForbiddenException(
+        'Account suspended',
+      );
+    }
+
+    if (
+      data.role !== 'admin' &&
+      data.role !== 'moderator'
+    ) {
+      throw new ForbiddenException(
+        'Insufficient permissions',
+      );
+    }
+
+    request.currentRole = data.role;
+
+    return true;
+  }
+}
