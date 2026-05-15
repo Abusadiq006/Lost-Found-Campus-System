@@ -51,3 +51,28 @@ import { SupabaseService } from '../supabase/supabase.service';
       user: data,
     };
   }
+
+    async unsuspendUser(userId: string) {
+    const supabase =
+      this.supabaseService.getClient();
+
+    const { data, error } = await supabase
+      .from('users')
+      .update({
+        is_suspended: false,
+      })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (error || !data) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    return {
+      message: 'User unsuspended successfully',
+      user: data,
+    };
+  }
