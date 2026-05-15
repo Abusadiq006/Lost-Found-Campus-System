@@ -6,7 +6,13 @@ import {
 
 import { SupabaseService } from '../supabase/supabase.service';
 
- async getAllUsers() {
+@Injectable()
+export class AdminService {
+  constructor(
+    private readonly supabaseService: SupabaseService,
+  ) {}
+
+  async getAllUsers() {
     const supabase =
       this.supabaseService.getClient();
 
@@ -16,7 +22,6 @@ import { SupabaseService } from '../supabase/supabase.service';
       .order('created_at', {
         ascending: false,
       });
-
 
     if (error) {
       throw new ForbiddenException(
@@ -40,7 +45,7 @@ import { SupabaseService } from '../supabase/supabase.service';
       .select()
       .single();
 
-        if (error || !data) {
+    if (error || !data) {
       throw new NotFoundException(
         'User not found',
       );
@@ -52,7 +57,7 @@ import { SupabaseService } from '../supabase/supabase.service';
     };
   }
 
-    async unsuspendUser(userId: string) {
+  async unsuspendUser(userId: string) {
     const supabase =
       this.supabaseService.getClient();
 
