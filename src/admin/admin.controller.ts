@@ -1,4 +1,14 @@
-import { Controller } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
 
-@Controller('admin')
-export class AdminController {}
+import { SupabaseAuthGuard } from '../auth/supabase-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+
+import { AdminService } from './admin.service';
