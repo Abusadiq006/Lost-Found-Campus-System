@@ -112,3 +112,28 @@ import { SupabaseService } from '../supabase/supabase.service';
         'Invalid role',
       );
     }
+
+    const supabase =
+      this.supabaseService.getClient();
+
+    const { data, error } = await supabase
+      .from('users')
+      .update({
+        role,
+      })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (error || !data) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    return {
+      message: 'Role updated successfully',
+      user: data,
+    };
+  }
+}
