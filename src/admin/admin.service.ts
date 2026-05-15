@@ -39,3 +39,15 @@ import { SupabaseService } from '../supabase/supabase.service';
       .eq('id', userId)
       .select()
       .single();
+
+        if (error || !data) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    return {
+      message: 'User suspended successfully',
+      user: data,
+    };
+  }
