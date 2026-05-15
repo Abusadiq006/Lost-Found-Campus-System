@@ -96,3 +96,19 @@ import { SupabaseService } from '../supabase/supabase.service';
       message: 'Item deleted successfully',
     };
   }
+
+  async updateRole(
+    userId: string,
+    role: string,
+  ) {
+    const allowedRoles = [
+      'student',
+      'moderator',
+      'admin',
+    ];
+
+    if (!allowedRoles.includes(role)) {
+      throw new ForbiddenException(
+        'Invalid role',
+      );
+    }
