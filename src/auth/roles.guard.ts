@@ -26,3 +26,12 @@ export class RolesGuard implements CanActivate {
         'Unauthorized',
       );
     }
+
+     const supabase =
+      this.supabaseService.getClient();
+
+    const { data } = await supabase
+      .from('users')
+      .select('role,is_suspended')
+      .eq('id', user.id)
+      .single();
